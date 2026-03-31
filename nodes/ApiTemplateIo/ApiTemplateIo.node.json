@@ -1,0 +1,26 @@
+{
+	"node": "n8n-nodes-base.ApiTemplateIo",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Productivity", "Marketing & Content", "Development"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://apitemplate.io/apiv2/#section/Authentication"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://apitemplate.io/apiv2/index.html"
+			}
+		]
+	},
+	"alias": [
+		"pdf",
+		"pdf generator",
+		"pdf generation",
+		"pdf template",
+		"generate report",
+		"create pdf"
+	]
+}

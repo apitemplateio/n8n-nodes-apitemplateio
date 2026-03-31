@@ -1,0 +1,60 @@
+{
+	"name": "n8n-nodes-apitemplateio",
+	"version": "0.1.0",
+	"description": "Automating PDF Document Creation has never been easier with APITemplate.io PDF template editor and PDF generation API!",
+	"keywords": [
+		"n8n-community-node-package"
+	],
+	"license": "MIT",
+	"homepage": "https://apitemplate.io/",
+	"bugs": {
+		"url": "https://github.com/apitemplateio/n8n-nodes-apitemplateio/issues",
+		"email": "hello@apitemplate.io"
+	},
+	"author": {
+		"name": "APITemplate.io",
+		"email": "hello@apitemplate.io"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/apitemplateio/n8n-nodes-apitemplateio.git"
+	},
+	"engines": {
+		"node": ">=24.14",
+		"pnpm": ">=11.9.0"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"prettier": "prettier --check .",
+		"prettier:fix": "prettier --write .",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/ApiTemplateIoApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/ApiTemplateIo/ApiTemplateIo.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.23.0",
+		"eslint": "9.32.0",
+		"prettier": "3.8.1",
+		"release-it": "19.2.4",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "2.13.0"
+	}
+}
