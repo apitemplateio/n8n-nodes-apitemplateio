@@ -22,6 +22,25 @@ export async function ensureExpirationParam(
 }
 
 /**
+ * The `json` type field stores its value as a string. Parse it into a real
+ * object so the request body contains an object under `data`, not a string.
+ */
+export async function parseTemplateData(
+	this: IExecuteSingleFunctions,
+	requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+	const body = requestOptions.body as Record<string, unknown> | undefined;
+	if (body?.data != null && typeof body.data === 'string') {
+		try {
+			body.data = JSON.parse(body.data);
+		} catch {
+			throw new Error('Template Data is not valid JSON');
+		}
+	}
+	return requestOptions;
+}
+
+/**
  * When export_type is 'file', configure the request to receive binary data
  * instead of JSON so the raw PDF bytes are returned.
  */
