@@ -2,7 +2,12 @@ import type { INodeProperties } from 'n8n-workflow';
 import { createFromUrlDescription } from './createFromUrl';
 import { createFromHtmlDescription } from './createFromHtml';
 import { createFromMarkdownDescription } from './createFromMarkdown';
-import { commonBodyFields, queryParamsDescription, pdfSettingsDescription } from './shared';
+import {
+	commonBodyFields,
+	queryParamsDescription,
+	asyncDescription,
+	pdfSettingsDescription,
+} from './shared';
 import { setBinaryRequestOptions, handleBinaryResponse } from './utils';
 
 const showOnlyForPdf = {
@@ -78,6 +83,7 @@ export const pdfDescription: INodeProperties[] = [
 	...createFromMarkdownDescription,
 	...createFromUrlDescription,
 	...commonBodyFields,
+	...asyncDescription,
 	...queryParamsDescription,
 	...pdfSettingsDescription,
 ];

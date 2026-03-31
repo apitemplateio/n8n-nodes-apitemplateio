@@ -110,24 +110,6 @@ export const queryParamsDescription: INodeProperties[] = [
 		displayOptions: { show: showForAllPdfOperations },
 		options: [
 			{
-				displayName: 'Async',
-				name: 'async',
-				type: 'options',
-				options: [
-					{ name: 'No', value: '0' },
-					{ name: 'Yes', value: '1' },
-				],
-				default: '0',
-				description:
-					'Whether to generate the PDF asynchronously. When enabled, the API returns immediately and calls the webhook URL when done.',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'async',
-					},
-				},
-			},
-			{
 				displayName: 'Direct Download',
 				name: 'directDownload',
 				type: 'options',
@@ -229,39 +211,73 @@ export const queryParamsDescription: INodeProperties[] = [
 					},
 				},
 			},
-			{
-				displayName: 'Webhook Method',
-				name: 'webhookMethod',
-				type: 'options',
-				options: [
-					{ name: 'GET', value: 'GET' },
-					{ name: 'POST', value: 'POST' },
-				],
-				default: 'GET',
-				description: 'The HTTP method for the webhook callback',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'webhook_method',
-					},
-				},
-			},
-			{
-				displayName: 'Webhook URL',
-				name: 'webhookUrl',
-				type: 'string',
-				default: '',
-				placeholder: 'https://yourwebserver.com/callback',
-				description:
-					'URL for the webhook callback when async generation is enabled. Must start with http:// or https://.',
-				routing: {
-					send: {
-						type: 'query',
-						property: 'webhook_url',
-					},
-				},
-			},
 		],
+	},
+];
+
+export const asyncDescription: INodeProperties[] = [
+	{
+		displayName: 'Async',
+		name: 'async',
+		type: 'options',
+		options: [
+			{ name: 'No', value: '0' },
+			{ name: 'Yes', value: '1' },
+		],
+		default: '0',
+		description:
+			'Whether to generate the PDF asynchronously. When enabled, the API returns immediately and calls the webhook URL when done.',
+		displayOptions: { show: showForAllPdfOperations },
+		routing: {
+			send: {
+				type: 'query',
+				property: 'async',
+			},
+		},
+	},
+	{
+		displayName: 'Webhook URL',
+		name: 'webhookUrl',
+		type: 'string',
+		required: true,
+		default: '',
+		placeholder: 'https://yourwebserver.com/callback',
+		description: 'URL for the webhook callback. Must start with http:// or https://.',
+		displayOptions: {
+			show: {
+				resource: ['pdf'],
+				async: ['1'],
+			},
+		},
+		routing: {
+			send: {
+				type: 'query',
+				property: 'webhook_url',
+			},
+		},
+	},
+	{
+		displayName: 'Webhook Method',
+		name: 'webhookMethod',
+		type: 'options',
+		options: [
+			{ name: 'GET', value: 'GET' },
+			{ name: 'POST', value: 'POST' },
+		],
+		default: 'GET',
+		description: 'The HTTP method for the webhook callback',
+		displayOptions: {
+			show: {
+				resource: ['pdf'],
+				async: ['1'],
+			},
+		},
+		routing: {
+			send: {
+				type: 'query',
+				property: 'webhook_method',
+			},
+		},
 	},
 ];
 
