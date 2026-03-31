@@ -1,15 +1,15 @@
 import { type INodeType, type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
+import { pdfDescription } from './resources/pdf';
 
 export class ApiTemplateIo implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'PDF from HTML, Markdown, URL',
 		name: 'apiTemplateIo',
 		icon: 'file:../../icons/apitemplateio.svg',
-		group: ['transform'],
+		group: ['output'],
 		version: 1,
-		subtitle: '={{ $parameter["operation"] + ": " + $parameter["resource"] }}',
-		description:
-			'Create beautiful PDF documents with ease using our drag-and-drop template editor. Start from ready-made templates for invoices, certificates, receipts, contracts, and more.',
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
+		description: 'Generate PDF documents from HTML, URL, or Markdown using APITemplate.io',
 		defaults: {
 			name: 'APITemplate.io',
 		},
@@ -23,12 +23,27 @@ export class ApiTemplateIo implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: 'https://rest.apitemplate.io/v2',
+			baseURL: 'https://rest.apitemplate.io',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
 		},
-		properties: [],
+		properties: [
+			{
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{
+						name: 'PDF',
+						value: 'pdf',
+					},
+				],
+				default: 'pdf',
+			},
+			...pdfDescription,
+		],
 	};
 }
