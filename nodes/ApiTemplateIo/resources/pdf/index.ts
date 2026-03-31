@@ -3,6 +3,7 @@ import { createFromUrlDescription } from './createFromUrl';
 import { createFromHtmlDescription } from './createFromHtml';
 import { createFromMarkdownDescription } from './createFromMarkdown';
 import { commonBodyFields, queryParamsDescription, pdfSettingsDescription } from './shared';
+import { setBinaryRequestOptions, handleBinaryResponse } from './utils';
 
 const showOnlyForPdf = {
 	resource: ['pdf'],
@@ -26,6 +27,12 @@ export const pdfDescription: INodeProperties[] = [
 						method: 'POST',
 						url: '/v2/create-pdf-from-html',
 					},
+					send: {
+						preSend: [setBinaryRequestOptions],
+					},
+					output: {
+						postReceive: [handleBinaryResponse],
+					},
 				},
 			},
 			{
@@ -38,6 +45,12 @@ export const pdfDescription: INodeProperties[] = [
 						method: 'POST',
 						url: '/v2/create-pdf-from-markdown',
 					},
+					send: {
+						preSend: [setBinaryRequestOptions],
+					},
+					output: {
+						postReceive: [handleBinaryResponse],
+					},
 				},
 			},
 			{
@@ -49,6 +62,12 @@ export const pdfDescription: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '/v2/create-pdf-from-url',
+					},
+					send: {
+						preSend: [setBinaryRequestOptions],
+					},
+					output: {
+						postReceive: [handleBinaryResponse],
 					},
 				},
 			},
