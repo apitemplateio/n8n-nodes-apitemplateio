@@ -100,6 +100,8 @@ export const commonBodyFields: INodeProperties[] = [
 	},
 ];
 
+export const EXPIRATION_DEFAULT = 60;
+
 export const queryParamsDescription: INodeProperties[] = [
 	{
 		displayName: 'Options',
@@ -130,9 +132,10 @@ export const queryParamsDescription: INodeProperties[] = [
 				displayName: 'Expiration (Minutes)',
 				name: 'expiration',
 				type: 'number',
-				typeOptions: { minValue: 60, maxValue: 10080 },
-				default: 60,
-				description: 'Expiration of the generated PDF in minutes',
+				typeOptions: { minValue: EXPIRATION_DEFAULT, maxValue: 10080 },
+				default: EXPIRATION_DEFAULT,
+				description:
+					'Expiration of the generated PDF in minutes. Always sent with a default of 60 if not explicitly set.',
 				routing: {
 					send: {
 						type: 'query',

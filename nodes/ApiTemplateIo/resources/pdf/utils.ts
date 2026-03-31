@@ -4,6 +4,22 @@ import type {
 	IN8nHttpFullResponse,
 	INodeExecutionData,
 } from 'n8n-workflow';
+import { EXPIRATION_DEFAULT } from './shared';
+
+/**
+ * Ensures the `expiration` query parameter is always present, even when the
+ * user hasn't explicitly added it from the Options collection.
+ */
+export async function ensureExpirationParam(
+	this: IExecuteSingleFunctions,
+	requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+	requestOptions.qs = requestOptions.qs ?? {};
+	if (requestOptions.qs.expiration == null) {
+		requestOptions.qs.expiration = EXPIRATION_DEFAULT;
+	}
+	return requestOptions;
+}
 
 /**
  * When export_type is 'file', configure the request to receive binary data

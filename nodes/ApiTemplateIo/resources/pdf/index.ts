@@ -8,7 +8,7 @@ import {
 	asyncDescription,
 	pdfSettingsDescription,
 } from './shared';
-import { setBinaryRequestOptions, handleBinaryResponse } from './utils';
+import { ensureExpirationParam, setBinaryRequestOptions, handleBinaryResponse } from './utils';
 
 const showOnlyForPdf = {
 	resource: ['pdf'],
@@ -33,7 +33,7 @@ export const pdfDescription: INodeProperties[] = [
 						url: '/v2/create-pdf-from-html',
 					},
 					send: {
-						preSend: [setBinaryRequestOptions],
+						preSend: [ensureExpirationParam, setBinaryRequestOptions],
 					},
 					output: {
 						postReceive: [handleBinaryResponse],
@@ -51,7 +51,7 @@ export const pdfDescription: INodeProperties[] = [
 						url: '/v2/create-pdf-from-markdown',
 					},
 					send: {
-						preSend: [setBinaryRequestOptions],
+						preSend: [ensureExpirationParam, setBinaryRequestOptions],
 					},
 					output: {
 						postReceive: [handleBinaryResponse],
@@ -69,7 +69,7 @@ export const pdfDescription: INodeProperties[] = [
 						url: '/v2/create-pdf-from-url',
 					},
 					send: {
-						preSend: [setBinaryRequestOptions],
+						preSend: [ensureExpirationParam, setBinaryRequestOptions],
 					},
 					output: {
 						postReceive: [handleBinaryResponse],
