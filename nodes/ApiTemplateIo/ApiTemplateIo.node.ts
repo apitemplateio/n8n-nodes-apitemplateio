@@ -1,5 +1,6 @@
 import { type INodeType, type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 import { pdfDescription } from './resources/pdf';
+import { regionField } from './resources/pdf/shared';
 
 export class ApiTemplateIo implements INodeType {
 	description: INodeTypeDescription = {
@@ -30,6 +31,7 @@ export class ApiTemplateIo implements INodeType {
 			},
 		},
 		properties: [
+			regionField,
 			{
 				displayName: 'Resource',
 				name: 'resource',

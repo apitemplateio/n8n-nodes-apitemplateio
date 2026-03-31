@@ -1,5 +1,61 @@
 import type { INodeProperties } from 'n8n-workflow';
 
+export const regionField: INodeProperties = {
+	displayName: 'Region',
+	name: 'region',
+	type: 'options',
+	default: 'rest',
+	description: 'Region of the endpoint',
+	required: true,
+	options: [
+		{
+			name: 'Default Endpoint',
+			value: 'rest',
+			description: 'Default endpoint for the API',
+		},
+		{
+			name: 'Endpoint: Australia',
+			value: 'rest-au',
+			description: 'Endpoint for Australia',
+		},
+		{
+			name: 'Endpoint: Europe (Frankfurt)',
+			value: 'rest-de',
+			description: 'Endpoint for Europe (Frankfurt)',
+		},
+		{
+			name: 'Endpoint: US East (N. Virginia)',
+			value: 'rest-us',
+			description: 'Endpoint for US East (N Virginia)',
+		},
+		{
+			name: 'Other: Alternative - Europe (Frankfurt)',
+			value: 'rest-alt-de',
+			description: 'Alternative endpoint for Europe (Frankfurt)',
+		},
+		{
+			name: 'Other: Alternative - Singapore',
+			value: 'rest-alt',
+			description: 'Alternative endpoint for Singapore',
+		},
+		{
+			name: 'Other: Alternative - US East (N. Virginia)',
+			value: 'rest-alt-us',
+			description: 'Alternative endpoint for US East (N Virginia)',
+		},
+		{
+			name: 'Other: Staging',
+			value: 'rest-staging',
+			description: 'Staging endpoint',
+		},
+	],
+	routing: {
+		request: {
+			baseURL: '=https://{{$value}}.apitemplate.io',
+		},
+	},
+};
+
 const showForHtmlAndMarkdown = {
 	resource: ['pdf'],
 	operation: ['createFromHtml', 'createFromMarkdown'],
